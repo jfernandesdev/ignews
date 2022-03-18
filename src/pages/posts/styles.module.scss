@@ -1,6 +1,6 @@
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto 4rem;
   padding: 0 2rem;
 }
 
@@ -36,6 +36,12 @@
       color: var(--gray-300);
       margin-top: 0.5rem;
       line-height: 1.625rem;
+      
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
 
     &:hover strong {

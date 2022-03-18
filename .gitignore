@@ -35,3 +35,6 @@ yarn.lock
 
 # vercel
 .vercel
+
+#vscode
+/.vscode
