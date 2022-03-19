@@ -1,10 +1,11 @@
+import { useEffect } from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useSession } from 'next-auth/react';
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { RichText } from "prismic-dom";
-import { useEffect } from "react";
+import { motion } from 'framer-motion';
 
 import { getPrismicClient } from "../../../services/prismic";
 
@@ -17,6 +18,28 @@ interface PostPreviewProps {
    content: string;
    updateAt: string;
  }
+}
+
+const fadeUp = {
+  initial: {
+    y: 60,
+    opacity: 0
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.6
+    }
+  }
+}
+
+const stagger = {
+  animate: {
+    transition: {
+      staggerChildren: .12
+    },
+  },
 }
 
 export default function PostPreview({ post }:PostPreviewProps) {
@@ -36,23 +59,32 @@ export default function PostPreview({ post }:PostPreviewProps) {
       </Head>
 
       <main className={styles.container}>
-        <article className={styles.post}>
-          <h1>{post.title}</h1>
-          <time>{post.updateAt}</time>
+        <motion.article 
+          className={styles.post}
+          initial="initial"
+          animate="animate"
+          variants={stagger}
+        >
+          <motion.h1 variants={fadeUp}>{post.title}</motion.h1>
+          <motion.time variants={fadeUp}>{post.updateAt}</motion.time>
 
-          <div 
+          <motion.div 
+            variants={fadeUp}
             className={`${styles.postContent} ${styles.previewContent}`}
             dangerouslySetInnerHTML={{__html: post.content}} 
           />
 
-          <div className={styles.continueReading}> 
+          <motion.div 
+            variants={fadeUp}
+            className={styles.continueReading}
+          > 
             Wanna continue reading?
             <Link href="/">
               <a>Subscribe now</a>
             </Link>
             🤗
-          </div>
-        </article>
+          </motion.div>
+        </motion.article>
       </main>
     </>
   );

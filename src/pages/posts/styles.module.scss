@@ -6,10 +6,11 @@
 
 .postList {
   max-width: 720px;
-  margin: 5rem auto 0;
+  margin: 5rem auto;
 
   a {
     display: block;
+    cursor: pointer;
 
     & + a {
       margin-top: 2rem;

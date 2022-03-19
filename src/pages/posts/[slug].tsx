@@ -1,74 +1,110 @@
-import { GetServerSideProps } from "next";
-import { getSession } from 'next-auth/react';
-import Head from "next/head";
-import { RichText } from "prismic-dom";
+import { GetServerSideProps } from 'next'
+import { getSession } from 'next-auth/react'
+import Head from 'next/head'
+import { RichText } from 'prismic-dom'
+import { motion } from 'framer-motion'
 
-import { getPrismicClient } from "../../services/prismic";
+import { getPrismicClient } from '../../services/prismic'
 
-import styles from './post.module.scss';
+import styles from './post.module.scss'
 
 interface PostProps {
- post: {
-   slug: string;
-   title: string;
-   content: string;
-   updateAt: string;
- }
+  post: {
+    slug: string
+    title: string
+    content: string
+    updateAt: string
+  }
 }
 
-export default function Post({ post }:PostProps) {
-  return(
+const fadeUp = {
+  initial: {
+    y: 60,
+    opacity: 0
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.6
+    }
+  }
+}
+
+
+const stagger = {
+  animate: {
+    transition: {
+      staggerChildren: 0.12
+    }
+  }
+}
+
+export default function Post({ post }: PostProps) {
+  return (
     <>
       <Head>
         <title>{post.title} | IgNews</title>
       </Head>
 
       <main className={styles.container}>
-        <article className={styles.post}>
-          <h1>{post.title}</h1>
-          <time>{post.updateAt}</time>
+        <motion.article 
+          className={styles.post}
+          initial="initial"
+          animate="animate"
+          variants={stagger}
+        >
+          <motion.h1 variants={fadeUp}>{post.title}</motion.h1>
+          <motion.time variants={fadeUp}>{post.updateAt}</motion.time>
 
-          <div 
+          <motion.div
+            variants={fadeUp}
             className={styles.postContent}
-            dangerouslySetInnerHTML={{__html: post.content}} 
+            dangerouslySetInnerHTML={{ __html: post.content }}
           />
-        </article>
+        </motion.article>
       </main>
     </>
-  );
+  )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  params,
+}) => {
   const session = await getSession({ req })
-  const { slug } = params;
+  const { slug } = params
 
-  if(!session?.activeSubscription) {
+  if (!session?.activeSubscription) {
     return {
       redirect: {
         destination: '/',
         permanent: false,
-      }
+      },
     }
   }
 
-  const prismic = getPrismicClient(req);
+  const prismic = getPrismicClient(req)
 
-  const response = await prismic.getByUID<any>('post', String(slug), {});
+  const response = await prismic.getByUID<any>('post', String(slug), {})
 
   const post = {
     slug,
     title: RichText.asText(response.data.title),
     content: RichText.asHtml(response.data.content),
-    updateAt: new Date(response.last_publication_date).toLocaleDateString('pt-BR', {
-      day: '2-digit',
-      month: 'long',
-      year: 'numeric'
-    })
-  };
+    updateAt: new Date(response.last_publication_date).toLocaleDateString(
+      'pt-BR',
+      {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric',
+      }
+    ),
+  }
 
   return {
     props: {
-      post
-    }
+      post,
+    },
   }
 }
