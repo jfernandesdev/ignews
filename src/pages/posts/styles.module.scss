@@ -8,6 +8,10 @@
   max-width: 720px;
   margin: 5rem auto;
 
+  @media(max-width: 720px) {
+    margin: 4rem auto;
+  }
+
   a {
     display: block;
     cursor: pointer;

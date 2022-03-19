@@ -9,7 +9,12 @@
   
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; 
+  white-space: nowrap;
+
+  span {
+    margin-left: 4px;
+  }
 
   svg {
     width: 20px;
@@ -28,5 +33,30 @@
 
   &:hover {
     filter: brightness(0.8);
+  }
+
+  .textBtnClose {
+    display: none;
+  }
+
+  @media(max-width: 720px) {
+    padding: 0 0.75rem;
+  
+    svg:first-child {
+      margin-right: 0.5rem;
+    }
+
+    svg.closeIcon {
+      margin-left: 0.4rem;
+    }
+
+    .textBtnClose {
+      display: block;
+      margin: 0;
+    }
+
+    span:not(.textBtnClose) {
+      display: none;
+    }
   }
 }

@@ -8,9 +8,17 @@
   max-width: 720px;
   margin: 5rem auto;
 
+  @media(max-width: 720px) {
+    margin: 2rem auto; 
+  }
+
   h1 { 
     font-size: 3.5rem;
     font-weight: 900;
+
+    @media(max-width: 720px) {
+      font-size: 2.5rem;
+    }
   }
 
   time { 
@@ -25,6 +33,11 @@
     line-height: 2rem;
     font-size: 1.125rem;
     color: var(--gray-100);
+
+    @media(max-width: 720px) {
+      overflow-x: scroll;
+      margin-top: 1rem;
+    }
 
     p, ul {
       margin: 1.5rem 0;
@@ -62,5 +75,10 @@
     &:hover {
       text-decoration: underline;
     }
+  }
+
+  @media(max-width: 720px) {
+    padding: 1rem;
+    margin: 2rem 0;
   }
 }

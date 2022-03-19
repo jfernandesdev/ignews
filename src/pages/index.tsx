@@ -65,7 +65,12 @@ export default function Home({ product }: HomeProps) {
             <SubscribeButton priceId={product.priceId} />
           </motion.div>
         </motion.section>
-        <img src='/images/avatar.svg' alt='Girl coding' />
+
+        <img 
+          className={styles.imgGirlHome}
+          src='/images/avatar.svg' 
+          alt='Girl coding' 
+        />
       </main>
     </motion.div>
   )

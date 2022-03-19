@@ -52,6 +52,7 @@
 body {
   background: var(--gray-900);
   color: var(--white);
+  overflow-x: hidden;
 }
 
 body, input, textarea, select, button {

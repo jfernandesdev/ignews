@@ -7,11 +7,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media(max-width: 720px) {
+    padding: 0 1rem;
+  }
+
+  @media (max-width:720px) and (orientation:landscape) {
+    height: auto;
+    margin: 2rem 1rem;
+  }
 }
 
 .hero {
   max-width: 600px;
-
+  
   > span {
     font-size: 1.5rem;
     font-weight: 700;
@@ -23,6 +32,11 @@
     font-weight: 900;
     margin-top: 2.5rem;
 
+    @media(max-width: 720px) {
+      font-size: 3.4rem;
+      line-height: 3.9rem;
+    }
+
     span { 
       color: var(--cyan-500);
     }
@@ -33,6 +47,10 @@
     line-height: 2.25rem;
     margin-top: 1.5rem;
 
+    @media(max-width: 720px) {
+      font-size: 1.45rem;
+    }
+
     span {
       color: var(--cyan-500);
       font-weight: 700;
@@ -41,5 +59,20 @@
 
   button {
     margin-top: 2.5rem;
+  }
+}
+
+@media(max-width: 720px) {
+  .imgGirlHome {
+    position: fixed;
+    transform: translate(44%, 25%);
+    z-index: -1;
+    opacity: 0.3;
+  }
+
+  @media (max-width:720px) and (orientation:landscape) {
+   .imgGirlHome {
+      transform: translate(90%, 10%);
+   }
   }
 }
