@@ -40,7 +40,8 @@
   }
 
   @media(max-width: 720px) {
-    padding: 0 0.75rem;
+    padding: 0;
+    width: 100px;
   
     svg:first-child {
       margin-right: 0.5rem;
@@ -56,6 +57,13 @@
     }
 
     span:not(.textBtnClose) {
+      font-size: 0.9em;
+      white-space: nowrap;
+      width: 40px;
+      overflow: hidden;
+    }
+
+    span.nameUser {
       display: none;
     }
   }
