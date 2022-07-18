@@ -1,4 +1,3 @@
-import { AppProps } from 'next/app'
 import { SessionProvider as NextAuthProvider } from 'next-auth/react'
 
 import { Header } from '../components/Header'
@@ -8,7 +7,7 @@ import { AnimatePresence } from 'framer-motion'
 
 import '../styles/global.scss'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }) {
   return (
     <AnimatePresence exitBeforeEnter>
       <NextAuthProvider session={pageProps.session}>
