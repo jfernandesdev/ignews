@@ -19,31 +19,36 @@ O projeto trata-se de um blog onde os usuários terão acesso completo aos conte
 - Next Auth | ^4.2.1
 - Typescript | ^4.6.2 -D
 - SASS | ^1.49.9
-
 - Prismic IO Client | 5.1.1
 - Stripe | ^8.209.0
 - Fauna DB | ^4.5.2
+- Jest | ^28.1.3 -D
+- Testing Library | ^12.1.5 -D
+
 
 ## Instalação em sua máquina ⚙️
 
 ```
-# Clone o projeto e acesse a pasta
+# Clone o projeto e acesse a pasta:
 $ git clone https://github.com/jfernandesdev/ignews.git && cd ignews
 
-# Instale as dependências
+# Instale as dependências:
 $ yarn
 
 # Na raiz do projeto crie uma copia do arquivo .env.sample
 # Altere o nome da copia para .env.local
-# Preencha as variáveis ambiente de acordo com as instruções
+# Preencha as variáveis ambiente de acordo com as instruções do arquivo 'servicesConfig' localizado na raiz do projeto
 
-# Execute stripe listen para ouvir eventos do webhook
+# Execute stripe listen para ouvir eventos do webhook:
 $ stripe listen --forward-to localhost:3000/api/webhooks
 
-# Rode o projeto 
+# Rode o projeto: 
 $ yarn dev
 
-// A aplicação estará disponível para acesso em seu navegador em http://localhost:3000
+# Para rodar os testes automatizados: 
+$ yarn test
+
+// A aplicação estará disponível em seu navegador em http://localhost:3000
 
 ```
 ## Dados de testes do Checkout 🧪
