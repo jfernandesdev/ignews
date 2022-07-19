@@ -62,7 +62,7 @@ export default function Home({ product }: HomeProps) {
           </motion.p>
 
           <motion.div variants={fadeUp}>
-            <SubscribeButton priceId={product.priceId} />
+            <SubscribeButton />
           </motion.div>
         </motion.section>
 
